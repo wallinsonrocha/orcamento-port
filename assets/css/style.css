@@ -1,0 +1,268 @@
+/* Configuração geral */
+*{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;  
+    margin-top: 50px;;
+    align-items: center;
+}
+
+main{
+    border: 1px solid #000;
+    width: 95%;
+}
+
+/* Botões */
+button{
+    cursor: pointer;
+    box-shadow: 0px 0px 3px #000;
+    margin: 10px;
+    padding: 5px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom, rgb(98, 236, 98), rgb(14, 185, 14));
+}
+
+button:hover{
+    background-image: linear-gradient(to bottom, rgb(4, 128, 4), rgb(6, 99, 6));
+    color: #fff;
+}
+
+#rm-material, #rm-servico, #rm-servico-dp, #rm-servico2{
+    background-image: linear-gradient(to bottom, rgb(236, 52, 52), rgb(250, 0, 0));
+}
+
+#rm-material:hover, .rm-servico:hover, .rm-servico-open:hover, #rm-servico-dp:hover{
+    background-image: linear-gradient(to bottom, rgb(221, 11, 11), rgb(94, 6, 6));
+}
+
+/* Fim configuração geral */
+
+
+/* ----------------------------------------------------------------------------------- */
+
+
+/* Orçamento */
+/* Infomrações */
+main .info{
+    padding: 10px;
+    cursor: pointer;
+}
+
+#image{
+    text-align: center;
+    border-bottom: 1px solid #000;   
+    height: 150px;
+}
+
+#image img{
+    height: 100%;
+}
+
+#modelo-item{
+    display: none;
+}
+
+.cliente, .att, .objetivo{
+    display: flex;
+}
+
+#cliente-value, #att-value, #objetivo-value{
+    margin-left: 5px;
+    text-transform: uppercase;
+}
+
+/* Fim informações */
+
+
+/* Materiais e serviço */
+header{
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #000;
+}
+
+.modelo{
+    border-top: 1px solid #000;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr 1fr 1fr 1fr;
+}
+
+
+.item{
+    text-transform: uppercase;
+    border-right: 1px solid #000;
+}
+
+.item:last-child{
+    text-transform: uppercase;
+    border-right: 0px;
+}
+
+.item div{
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #000;
+    margin-top: 10px;
+}
+
+.area-item-servico, .area-item-materiais{
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr 1fr 2.5fr 2.5fr;
+}
+
+#vfinal-servico, #vfinal-material{
+    grid-column: 1/6;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    padding: 5px;
+    text-align: center;
+}
+
+#vfinal-rsl-servico, #vfinal-rsl-materiais{
+    grid-column: 6/7;
+    border-bottom: 1px solid #000;
+    padding: 5px;
+    text-align: center;
+}
+
+#cliente-nome, #att-nome, #objetivo-nome{
+    margin-left: 5px;
+    text-transform: uppercase;
+}
+/* Fim materiais e servico */
+
+/* ----------------------------------------------------------------------------------- */
+
+/* Display de edição */
+
+    /* Info */
+#objetivo-value{
+    width: 400px;
+}
+
+#display-info{
+    display: none;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#display-info .info{
+    margin: auto;
+    line-height: 25px;
+    padding: 10px;
+    width: 50vw;
+    border: 1px solid #000;
+    background-color: #fff;
+}
+
+#btn-cancelar-display{
+    background-image: linear-gradient(to bottom, rgb(236, 52, 52), rgb(250, 0, 0));
+}
+
+#btn-cancelar-display:hover{
+    background-image: linear-gradient(to bottom, rgb(221, 11, 11), rgb(94, 6, 6));
+}
+
+#btn-limpar-display{
+    background-image: linear-gradient(to bottom, rgb(240, 236, 33), rgb(95, 105, 6));
+}
+
+#btn-limpar-display:hover{
+    background-image: linear-gradient(to bottom, rgb(101, 128, 6), rgb(36, 46, 2));
+}
+
+/* Servico */
+#display-servico{
+    display: none;
+    flex-direction: column;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.item-display{
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr 1fr 1fr 1fr;
+    margin: auto;
+    line-height: 25px;
+    width: 95vw;
+    border: 1px solid #000;
+    background-color: #fff;
+}
+
+.item-display .item{
+    border-bottom: 1px solid #000;
+}
+
+.bn div{
+    border: none;
+}
+
+.item-display input{
+    appearance: textfield;
+    border: 1px solid #000;
+    width: 95%;
+}
+
+#btn-servico-dp{
+    display: flex;
+}
+/* Fim Display de edição */
+
+/* Estilização para remover elementos */
+#rm-servico-display{
+    display: none;
+
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.item-display-rm{
+    display: grid;   
+}
+
+.item-display-rm .item-display{
+    cursor: pointer;
+}
+
+.item-display-rm .item-display{
+    margin-top: 20px;
+}
+
+.item-display-box{
+    margin: auto;
+    width: auto;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: #fff;   
+}
