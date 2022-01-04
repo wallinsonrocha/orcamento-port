@@ -22,8 +22,8 @@ let divLenSv = qA('#item-servico .item').length+1;
 let nmrSv = String(divLenSv);
 q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
 //Remover item
-let keysvRm;
-let itemOrcSv;
+let keysvRm = 0;
+let itemOrcSv = null;
 //Fim variáveis e constantes
 
 //Botão Adicionar
@@ -45,6 +45,7 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
         let areaItemServico4 = qA('#modelo-item .item')[3].cloneNode(true);
         let areaItemServico5 = qA('#modelo-item .item')[4].cloneNode(true);
         let areaItemServico6 = qA('#modelo-item .item')[5].cloneNode(true);
+        let rmItemServico = q('#modelo-item-rm .item-display').cloneNode(true);
 
         keySv++;
         
@@ -54,27 +55,36 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
         areaItemServico4.setAttribute('data-keySv', keySv);
         areaItemServico5.setAttribute('data-keySv', keySv);
         areaItemServico6.setAttribute('data-keySv', keySv);
+        rmItemServico.setAttribute('data-keySv', keySv);
     
         //Add após confirmação
         //Item
         areaItemServico1.innerHTML = nmrSv.padStart(3, '0');
+        rmItemServico.querySelectorAll('.item')[0].innerHTML = nmrSv.padStart(3, '0');
         q('#item-servico').append(areaItemServico1);        
         //Servico
         areaItemServico2.innerHTML = q('#servico-input').value;
+        rmItemServico.querySelectorAll('.item')[1].innerHTML = q('#servico-input').value;
         q('#servico-servico').append(areaItemServico2);
         //Unidade
         areaItemServico3.innerHTML = q('#uni-input').value;
+        rmItemServico.querySelectorAll('.item')[2].innerHTML = q('#uni-input').value;
         q('#uni-servico').append(areaItemServico3);
         //Quantidade
         areaItemServico4.innerHTML = q('#qnt-input').value;
+        rmItemServico.querySelectorAll('.item')[3].innerHTML = q('#qnt-input').value;
         q('#qnt-servico').append(areaItemServico4);
         //Valor Unitário
         let vUIn = parseInt(q('#vunitario-input').value);
         areaItemServico5.innerHTML = `R$${(vUIn).toFixed(2)}`;
+        rmItemServico.querySelectorAll('.item')[4].innerHTML = `R$${(vUIn).toFixed(2)}`;
         q('#vunitario-servico').append(areaItemServico5);
         //Valor total
         areaItemServico6.innerHTML = `R$${(vtotalServicoValor).toFixed(2)}`;
+        rmItemServico.querySelectorAll('.item')[5].innerHTML = `R$${(vtotalServicoValor).toFixed(2)}`;
         q('#vtotal-servico').append(areaItemServico6);
+
+        q('.item-display-rm').append(rmItemServico);
 
         divLenSv = qA('#item-servico .item').length+1;
         nmrSv = String(divLenSv);
@@ -112,7 +122,7 @@ let rmItemServicoClose = q('#rm-servico2').addEventListener('click', ()=>{
 
 //Remover Item
 let rmItemClick = qA(".item-display-rm [data-keysv]");
-for (let i = 0; i < rmItemClick.length; i++) {
+for (let i = 0; i < rmItemClick.length; i++){
     rmItemClick[i].addEventListener("click", function(){
         keysvRm = this.getAttribute('data-keysv');
         this.parentNode.removeChild(this);
