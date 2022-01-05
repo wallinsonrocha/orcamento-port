@@ -23,8 +23,8 @@ let nmrSv = String(divLenSv);
 q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
 //Remover item
 let rmItemClick = qA(".item-display-rm [data-keysv]");
+let itemOrcSv = qA("[data-keysv]");
 let keysvRm = 0;
-let itemOrcSv = null;
 //Fim variáveis e constantes
 
 //Botão Adicionar
@@ -98,7 +98,27 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
         q('#vunitario-input').value = '';
         q('#vtotal-servico-dp div').innerHTML = 0;    
         
-        rmItemClick = qA(".item-display-rm [data-keysv]");
+        //Remover Item
+        let rmItemClick = qA(".item-display-rm [data-keysv]");
+        let itemOrcSv = qA("[data-keysv]");
+        for (let i = 0; i < rmItemClick.length; i++){
+            rmItemClick[i].addEventListener("click", function(){
+                keysvRm = this.getAttribute('data-keysv');
+                this.parentNode.removeChild(this);
+
+                for(let i = 0; i < qA("[data-keysv]").length; i++){
+                    itemOrcSv = qA("#orcamento-servico [data-keysv]")[i];
+                    if(itemOrcSv.getAttribute('data-keysv') == keysvRm){
+                        //itemOrcSv.parentNode.removeChild(itemOrcSv);
+                        //Tentar colocar um while
+                        return console.log(itemOrcSv.parentNode.removeChild(itemOrcSv));
+                    }
+                }
+
+                
+                //rmItemClick = qA(".item-display-rm [data-keysv]");
+            });
+        }
 
     }else{
         alert("Ainda há campos que devem ser preenchidos!");
@@ -122,24 +142,6 @@ let rmItemServicoClose = q('#rm-servico2').addEventListener('click', ()=>{
 
     //qA('#servico-servico div')[0].getAttribute('data-keysv');
 });
-
-//Remover Item
-for (let i = 0; i < rmItemClick.length; i++){
-    rmItemClick[i].addEventListener("click", function(e){
-        console.log(this);
-        keysvRm = this.getAttribute('data-keysv');
-        this.parentNode.removeChild(this);
-        
-        // for(let i = 0; i < qA("[data-keysv]").length; i++){
-        //     itemOrcSv = qA("#orcamento-servico [data-keysv]")[i];
-        //     if(itemOrcSv.getAttribute('data-keysv') == keysvRm){
-        //         //itemOrcSv.parentNode.removeChild(itemOrcSv);
-        //         //Tentar colocar um while
-        //         return console.log(itemOrcSv.parentNode.removeChild(itemOrcSv));
-        //     }
-        // }
-    });
-}
 
 //Fim botões
 
