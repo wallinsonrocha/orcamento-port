@@ -1,3 +1,3 @@
-O projeto ainda etsa incompleto. Alguns códigos ainda serão editados e explicados.
+Site para vizualizar projeto: https://wallinsonrocha.github.io/orcamento-port/
 
-Uma tentativa de modificar o remove foi falha. Talvez eu deva fazer uma alteração apra que o for dê vários loops.
+O projeto ainda etsa incompleto. Alguns códigos ainda serão editados e explicados.

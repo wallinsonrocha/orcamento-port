@@ -25,6 +25,9 @@ q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
 let rmItemClick = qA(".item-display-rm [data-keysv]");
 let itemOrcSv = qA("[data-keysv]");
 let keysvRm = 0;
+//Loops
+let i = 0;
+
 //Fim variáveis e constantes
 
 //Botão Adicionar
@@ -101,25 +104,33 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
         //Remover Item
         let rmItemClick = qA(".item-display-rm [data-keysv]");
         let itemOrcSv = qA("[data-keysv]");
-        for (let i = 0; i < rmItemClick.length; i++){
+        for (i = 0; i < rmItemClick.length; i++){
             rmItemClick[i].addEventListener("click", function(){
                 keysvRm = this.getAttribute('data-keysv');
-                this.parentNode.removeChild(this);
-
-                for(let i = 0; i < qA("[data-keysv]").length; i++){
+                let itemOrcSvLen = qA("[data-keysv]").length;
+                i = 0;
+                while(i != itemOrcSvLen){
                     itemOrcSv = qA("#orcamento-servico [data-keysv]")[i];
-                    if(itemOrcSv.getAttribute('data-keysv') == keysvRm){
-                        //itemOrcSv.parentNode.removeChild(itemOrcSv);
-                        //Tentar colocar um while
-                        return console.log(itemOrcSv.parentNode.removeChild(itemOrcSv));
+                    try{
+                        if(itemOrcSv.getAttribute('data-keysv') == keysvRm){
+                            console.log(itemOrcSv.parentNode.removeChild(itemOrcSv));
+                            itemOrcSvLen = qA("[data-keysv]").length;
+                            i = 0;
+                        } else{
+                            i++;
+                        }
+                    } catch(itemOrcSvUndefined){
+                        break;
                     }
+                }                
+                try{
+                    this.parentNode.removeChild(this);
+                } catch{
+                    return null;
                 }
-
-                
-                //rmItemClick = qA(".item-display-rm [data-keysv]");
-            });
+            }
+            );
         }
-
     }else{
         alert("Ainda há campos que devem ser preenchidos!");
     }
