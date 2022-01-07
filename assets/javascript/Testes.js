@@ -1,11 +1,3 @@
-
-
-//parentNode
-//innerHTML
-
-//Ideias que serão utilizadas
-//qA('[data-keysv]')[i].getAttribute('data-keysv') == 
-
 //Constantes
 const q = (e)=> document.querySelector(e);
 const qA = (eA) => document.querySelectorAll(eA);
@@ -21,17 +13,17 @@ let keySv = 0;
 let divLenSv = qA('#item-servico .item').length+1;
 let nmrSv = String(divLenSv);
 q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
+let nmrSvMod;
+let divLenSvMod;
 //Remover item
 let rmItemClick = qA(".item-display-rm [data-keysv]");
 let itemOrcSv = qA("[data-keysv]");
 let keysvRm = 0;
 //Loops
 let i = 0;
-
 //Fim variáveis e constantes
 
 //Botão Adicionar
-//Essa parte do código vai até antes de botão remover.
 let addServico = q('#add-servico').addEventListener('click', ()=>{
     q('#display-servico').style.display = 'flex';
 });
@@ -113,7 +105,7 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
                     itemOrcSv = qA("#orcamento-servico [data-keysv]")[i];
                     try{
                         if(itemOrcSv.getAttribute('data-keysv') == keysvRm){
-                            console.log(itemOrcSv.parentNode.removeChild(itemOrcSv));
+                            itemOrcSv.parentNode.removeChild(itemOrcSv);
                             itemOrcSvLen = qA("[data-keysv]").length;
                             i = 0;
                         } else{
@@ -136,7 +128,6 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
     }
 });
 
-//Fechar e remover
 //Fechar display servico
 let rmServico = q('#rm-servico-dp').addEventListener('click', ()=>{
     q('#display-servico').style.display = 'none';
@@ -144,19 +135,32 @@ let rmServico = q('#rm-servico-dp').addEventListener('click', ()=>{
 
 let rmItemServicoOpen = q('#rm-servico').addEventListener('click', ()=>{
     q('#rm-servico-display').style.display = 'grid';
-
-    //qA('#servico-servico div')[0].getAttribute('data-keysv');
 });
 
 let rmItemServicoClose = q('#rm-servico2').addEventListener('click', ()=>{
-    q('#rm-servico-display').style.display = 'none';
+    let rmItemServico = qA('.item-display-rm .item-display');
 
-    //qA('#servico-servico div')[0].getAttribute('data-keysv');
+    q('#rm-servico-display').style.display = 'none';
+    divLenSv = qA('#item-servico .item').length+1;
+    nmrSv = String(divLenSv);
+    q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
+
+    divLenSvMod = qA('#item-servico .item').length+1;
+
+    try{
+        for(i = 0; i <= divLenSvMod; i++){
+            nmrSvMod = String(i+1);
+            qA('#item-servico .item')[i].innerHTML = nmrSvMod.padStart(3, '0');
+            rmItemServico[i].querySelector('.item').innerHTML = nmrSvMod.padStart(3, '0');
+        }
+    } catch(Uncaught){
+        return null;
+    }
+
+
+    //Adcionar lógica para recalcular o resultado total e reiniciar a contagem no display de adicionar
 });
 
-//Fim botões
-
-//Display
 //Cálculo valor unitário
 let vunitarioServico = q('#vunitario-input').addEventListener('keyup', ()=>{
     setInterval(()=>{
