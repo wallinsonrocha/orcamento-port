@@ -21,6 +21,7 @@ let itemOrcSv = qA("[data-keysv]");
 let keysvRm = 0;
 //Loops
 let i = 0;
+let j = 0;
 //Fim variáveis e constantes
 
 //Botão Adicionar
@@ -154,9 +155,20 @@ let rmItemServicoClose = q('#rm-servico2').addEventListener('click', ()=>{
             rmItemServico[i].querySelector('.item').innerHTML = nmrSvMod.padStart(3, '0');
         }
     } catch(Uncaught){
-        return null;
+        null;
     }
 
+    keySv = qA('#item-servico .item').length
+    
+    for(i = 0; i < keySv; i++){
+        qA('#rm-servico-display .item-display')[i].setAttribute('data-keysv', i+1);
+        qA('#item-servico .item')[i].setAttribute('data-keysv', i+1);
+        qA('#servico-servico .item')[i].setAttribute('data-keysv', i+1);
+        qA('#uni-servico .item')[i].setAttribute('data-keysv', i+1);
+        qA('#qnt-servico .item')[i].setAttribute('data-keysv', i+1);
+        qA('#vunitario-servico .item')[i].setAttribute('data-keysv', i+1);
+        qA('#vtotal-servico .item')[i].setAttribute('data-keysv', i+1);
+    }
 
     //Adcionar lógica para recalcular o resultado total e reiniciar a contagem no display de adicionar
 });

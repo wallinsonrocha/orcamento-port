@@ -100,6 +100,7 @@ header{
 
 
 .item{
+    text-align: center;
     text-transform: uppercase;
     border-right: 1px solid #000;
 }
