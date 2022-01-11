@@ -36,11 +36,11 @@ button:hover{
     color: #fff;
 }
 
-#rm-material, #rm-servico, #rm-servico-dp, #rm-servico2{
+#rm-material, #rm-servico, #rm-servico-dp, #rm-servico2, #rm-material2, #rm-material-dp{
     background-image: linear-gradient(to bottom, rgb(236, 52, 52), rgb(250, 0, 0));
 }
 
-#rm-material:hover, .rm-servico:hover, .rm-servico-open:hover, #rm-servico-dp:hover{
+#rm-material:hover, .rm-servico:hover, #rm-servico-dp:hover, #rm-material-dp{
     background-image: linear-gradient(to bottom, rgb(221, 11, 11), rgb(94, 6, 6));
 }
 
@@ -130,7 +130,7 @@ header{
     text-align: center;
 }
 
-#vfinal-rsl-servico, #vfinal-rsl-materiais{
+#vfinal-rsl-servico, #vfinal-rsl-material{
     grid-column: 6/7;
     border-bottom: 1px solid #000;
     padding: 5px;
@@ -270,4 +270,37 @@ header{
 
 #modelo-item-rm{
     display: none;
+}
+
+/* Material */
+#display-material{
+    display: none;
+    flex-direction: column;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#btn-material-dp{
+    display: flex;
+}
+
+/* Estilização para remover elementos */
+#rm-material-display{
+    display: none;
+
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

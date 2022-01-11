@@ -71,15 +71,15 @@
                 </div>
                 <div id="uni-servico-dp" class="item bn">
                     <header>Uni.</header>
-                    <div><input id="uni-input" type="text"></div>
+                    <div><input id="uniSv-input" type="text"></div>
                 </div>
                 <div id="qnt-servico-dp" class="item bn">
                     <header>Qnt.</header>
-                    <div><input id="qnt-input" type="number"></div>
+                    <div><input id="qntSv-input" type="number"></div>
                 </div>
                 <div id="vunitario-servico-dp" class="item bn">
                     <header>V. Unitário</header>
-                    <div><input id="vunitario-input" type="number"></div>
+                    <div><input id="vunitarioSv-input" type="number"></div>
                 </div>
                 <div id="vtotal-servico-dp" class="item bn">
                     <header>V. Total</header>
@@ -92,10 +92,50 @@
             </div>
         </div>
 
+        <div id="display-material">
+            <div class="item-display">
+                <div id="item-material-dp" class="item bn">
+                    <header>Item</header>                        
+                    <div></div>
+                </div>
+                <div id="material-material-dp" class="item bn">
+                    <header>Serviços</header>
+                    <div><input id="material-input" type="text"></div>
+                </div>
+                <div id="uni-material-dp" class="item bn">
+                    <header>Uni.</header>
+                    <div><input id="uniMt-input" type="text"></div>
+                </div>
+                <div id="qnt-material-dp" class="item bn">
+                    <header>Qnt.</header>
+                    <div><input id="qntMt-input" type="number"></div>
+                </div>
+                <div id="vunitario-material-dp" class="item bn">
+                    <header>V. Unitário</header>
+                    <div><input id="vunitarioMt-input" type="number"></div>
+                </div>
+                <div id="vtotal-material-dp" class="item bn">
+                    <header>V. Total</header>
+                    <div>0</div>
+                </div>    
+                <div id="btn-material-dp">
+                    <button id="add-material-dp">Confirmar</button>
+                    <button id="rm-material-dp">Fechar</button>
+                </div>
+            </div>
+        </div>
+
         <div id="rm-servico-display">
             <div class="item-display-box">
                 <div class="item-display-rm"></div>
                 <button id="rm-servico2">Voltar</button>
+            </div>
+        </div>
+
+        <div id="rm-material-display">
+            <div class="item-display-box">
+                <div class="item-display-rm"></div>
+                <button id="rm-material2">Voltar</button>
             </div>
         </div>
 
@@ -171,14 +211,16 @@
                     <div id="vtotal-materiais" class="item">
                         <header>V. Total</header>
                     </div>
+                    <div id="vfinal-material">VALOR TOTAL </div>
+                    <div id="vfinal-rsl-material"></div>
                 </div>
             </div>
-            <button id="add-materiais">Adicionar</button>
+            <button id="add-material">Adicionar</button>
             <button id="rm-material">Remover</button>
             <div id="area-material"></div>
         </main>
 
         <script src="assets/javascript/displayInfo.js"></script>
-        <script src="assets/javascript/Testes.js"></script>
+        <script src="assets/javascript/servico.js"></script>
     </body>
 </html>
