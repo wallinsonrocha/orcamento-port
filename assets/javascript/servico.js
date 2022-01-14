@@ -8,33 +8,31 @@ Utilizando (e) => tendo o "e" como parâmetro, o que for escrito será substitu�
 const q = (e)=> document.querySelector(e);
 const qA = (eA) => document.querySelectorAll(eA);
 //Variáveis para cálculo valor unitário
-let vunitarioMaterialValor = 0;
-let qntMaterialValor = 0;
-let vtotalMaterialValor = 0;
+let vunitarioServicoValor = 0;
+let qntServicoValor = 0;
+let vtotalServicoValor = 0;
 //Variáveis Confirmar display
-let materialMaterial = q('#servico-input').value;
-let uniMaterial = q('#uniSv-input').value;
-let keyMt = 0;
+let keySv = 0;
 //Numeração Item
-let divLenMt = qA('#item-servico .item').length+1;
-let nmrMt = String(divLenMt);
+let divLenSv = qA('#item-servico .item').length+1;
+let nmrSv = String(divLenSv);
 /* 
 A linha abaixo serviu para definir o valor do ITEM no display como zero.
-Nos códigos abaixo (em let addMaterialDp) observaremos o desenvolvimento do código
+Nos códigos abaixo (em let addServicoDp) observaremos o desenvolvimento do código
 e o motivo da existência dessa linha.
 */
-q('#item-servico-dp div').innerHTML = nmrMt.padStart(3, '0');
-let nmrMtMod;
-let divLenMtMod;
+q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
+let nmrSvMod;
+let divLenSvMod;
 //Remover item
-let rmItemClick = qA(".item-display-rm [data-keyMt]");
-let itemOrcMt = qA("[data-keyMt]");
-let keyMtRm = 0;
+let rmItemClick = qA(".item-display-rm [data-keySv]");
+let itemOrcSv = qA("[data-keySv]");
+let keySvRm = 0;
 //Loops
 let i = 0;
 let j = 0;
 //Valor total
-let somaTotalMt = 0;
+let somaTotalSv = 0;
 //Fim variáveis e constantes
 
 //Botão Adicionar
@@ -46,7 +44,7 @@ Nele, como pode-se observar, há dois parâmetros: 'evento' e a função.
 Neste caso, a função foi adicionada junta, mas poderia ser feita separadamente e colocada:
 Ex.: q(...).addEventListener('click', adicionar());
 */
-let addMaterial = q('#add-servico').addEventListener('click', ()=>{
+let addServico = q('#add-servico').addEventListener('click', ()=>{
     /*
     Pode-se acessar e modificar o CSS do elemento selecionado atraves do ".style".
     Neste caso eu quis acessar o display para modificá-lo, já que nas condições naturais
@@ -56,12 +54,12 @@ let addMaterial = q('#add-servico').addEventListener('click', ()=>{
 });
 
 //Confirmar display
-let addMaterialDp = q('#add-servico-dp').addEventListener('click', ()=>{
+let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
     /* Com ".value" pegamos o valor armazenado no input */
-    materialMaterial = q('#servico-input').value;
-    uniMaterial = q('#uniSv-input').value;
+    let ServicoServico = q('#servico-input').value;
+    let uniServico = q('#uniSv-input').value;
                                             
-    if(uniMaterial != 0 && materialMaterial != 0 && vtotalMaterialValor != 0){
+    if(uniServico != 0 && ServicoServico != 0 && vtotalServicoValor != 0){
 
         /*
         Essa parte do código poderia ser feito usando for e algum array. Penso em modificá-lo.
@@ -79,23 +77,23 @@ let addMaterialDp = q('#add-servico-dp').addEventListener('click', ()=>{
         ".item". Para acessa-los, o uso do "[]" foi nescessário.
         */
 
-        let areaItemMaterial1 = qA('#modelo-item .item')[0].cloneNode(true);
-        let areaItemMaterial2 = qA('#modelo-item .item')[1].cloneNode(true);
-        let areaItemMaterial3 = qA('#modelo-item .item')[2].cloneNode(true);
-        let areaItemMaterial4 = qA('#modelo-item .item')[3].cloneNode(true);
-        let areaItemMaterial5 = qA('#modelo-item .item')[4].cloneNode(true);
-        let areaItemMaterial6 = qA('#modelo-item .item')[5].cloneNode(true);
-        let rmItemMaterial = q('#modelo-item-rm .item-display').cloneNode(true);
+        let areaItemServico1 = qA('#modelo-item .item')[0].cloneNode(true);
+        let areaItemServico2 = qA('#modelo-item .item')[1].cloneNode(true);
+        let areaItemServico3 = qA('#modelo-item .item')[2].cloneNode(true);
+        let areaItemServico4 = qA('#modelo-item .item')[3].cloneNode(true);
+        let areaItemServico5 = qA('#modelo-item .item')[4].cloneNode(true);
+        let areaItemServico6 = qA('#modelo-item .item')[5].cloneNode(true);
+        let rmItemServico = q('#modelo-item-rm .item-display').cloneNode(true);
 
-        keyMt++;
+        keySv++;
         /* Com o setAttribute adicionamos um atributo no elemento selecionado seguido do seu valor */
-        areaItemMaterial1.setAttribute('data-keyMt', keyMt);
-        areaItemMaterial2.setAttribute('data-keyMt', keyMt);
-        areaItemMaterial3.setAttribute('data-keyMt', keyMt);
-        areaItemMaterial4.setAttribute('data-keyMt', keyMt);
-        areaItemMaterial5.setAttribute('data-keyMt', keyMt);
-        areaItemMaterial6.setAttribute('data-keyMt', keyMt);
-        rmItemMaterial.setAttribute('data-keyMt', keyMt);
+        areaItemServico1.setAttribute('data-keySv', keySv);
+        areaItemServico2.setAttribute('data-keySv', keySv);
+        areaItemServico3.setAttribute('data-keySv', keySv);
+        areaItemServico4.setAttribute('data-keySv', keySv);
+        areaItemServico5.setAttribute('data-keySv', keySv);
+        areaItemServico6.setAttribute('data-keySv', keySv);
+        rmItemServico.setAttribute('data-keySv', keySv);
 
         /* 
         Até essa parte do código (de cima) foi criado uma condição que, quando permitida, habilita a criação de clones
@@ -119,40 +117,40 @@ let addMaterialDp = q('#add-servico-dp').addEventListener('click', ()=>{
         adiciona mais elementos sem modificar o que já existe.
         */
         //Item
-        areaItemMaterial1.innerHTML = nmrMt.padStart(3, '0');
-        rmItemMaterial.querySelectorAll('.item')[0].innerHTML = nmrMt.padStart(3, '0');
-        q('#item-servico').append(areaItemMaterial1);        
+        areaItemServico1.innerHTML = nmrSv.padStart(3, '0');
+        rmItemServico.querySelectorAll('.item')[0].innerHTML = nmrSv.padStart(3, '0');
+        q('#item-servico').append(areaItemServico1);        
         //Servico
-        areaItemMaterial2.innerHTML = q('#servico-input').value;
-        rmItemMaterial.querySelectorAll('.item')[1].innerHTML = q('#servico-input').value;
-        q('#servico-servico').append(areaItemMaterial2);
+        areaItemServico2.innerHTML = q('#servico-input').value;
+        rmItemServico.querySelectorAll('.item')[1].innerHTML = q('#servico-input').value;
+        q('#servico-servico').append(areaItemServico2);
         //Unidade
-        areaItemMaterial3.innerHTML = q('#uniSv-input').value;
-        rmItemMaterial.querySelectorAll('.item')[2].innerHTML = q('#uniSv-input').value;
-        q('#uni-servico').append(areaItemMaterial3);
+        areaItemServico3.innerHTML = q('#uniSv-input').value;
+        rmItemServico.querySelectorAll('.item')[2].innerHTML = q('#uniSv-input').value;
+        q('#uni-servico').append(areaItemServico3);
         //Quantidade
-        areaItemMaterial4.innerHTML = q('#qntSv-input').value;
-        rmItemMaterial.querySelectorAll('.item')[3].innerHTML = q('#qntSv-input').value;
-        q('#qnt-servico').append(areaItemMaterial4);
+        areaItemServico4.innerHTML = q('#qntSv-input').value;
+        rmItemServico.querySelectorAll('.item')[3].innerHTML = q('#qntSv-input').value;
+        q('#qnt-servico').append(areaItemServico4);
         //Valor Unitário
         let vUIn = parseInt(q('#vunitarioSv-input').value);
-        areaItemMaterial5.innerHTML = `R$${(vUIn).toFixed(2)}`;
-        rmItemMaterial.querySelectorAll('.item')[4].innerHTML = `R$${(vUIn).toFixed(2)}`;
-        q('#vunitario-servico').append(areaItemMaterial5);
+        areaItemServico5.innerHTML = `R$${(vUIn).toFixed(2)}`;
+        rmItemServico.querySelectorAll('.item')[4].innerHTML = `R$${(vUIn).toFixed(2)}`;
+        q('#vunitario-servico').append(areaItemServico5);
         //Valor total
-        areaItemMaterial6.innerHTML = `R$${(vtotalMaterialValor).toFixed(2)}`;
-        rmItemMaterial.querySelectorAll('.item')[5].innerHTML = `R$${(vtotalMaterialValor).toFixed(2)}`;
-        q('#vtotal-servico').append(areaItemMaterial6);
+        areaItemServico6.innerHTML = `R$${(vtotalServicoValor).toFixed(2)}`;
+        rmItemServico.querySelectorAll('.item')[5].innerHTML = `R$${(vtotalServicoValor).toFixed(2)}`;
+        q('#vtotal-servico').append(areaItemServico6);
 
         /* 
         Esta linha abaixo serve para atualizar as alterações que foram feitas para o display de remover.
         O append é o final de toda alteração do cloneNode, neste código.
         */
-        q('.item-display-rm').append(rmItemMaterial);
+        q('.item-display-rm').append(rmItemServico);
 
-        divLenMt = qA('#item-servico .item').length+1;
-        nmrMt = String(divLenMt);
-        q('#item-servico-dp div').innerHTML = nmrMt.padStart(3, '0');
+        divLenSv = qA('#item-servico .item').length+1;
+        nmrSv = String(divLenSv);
+        q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
 
         //Display none e zerar valores
         q('#servico-input').value = '';
@@ -162,8 +160,8 @@ let addMaterialDp = q('#add-servico-dp').addEventListener('click', ()=>{
         q('#vtotal-servico-dp div').innerHTML = 0;    
         
         //Remover Item
-        let rmItemClick = qA(".item-display-rm [data-keyMt]");
-        let itemOrcMt = qA("[data-keyMt]");
+        let rmItemClick = qA(".item-display-rm [data-keySv]");
+        let itemOrcSv = qA("[data-keySv]");
         for (i = 0; i < rmItemClick.length; i++){
             /*
             Uma coisa que eu tive dificuldade para fazer foi o ato de deletar o item selecionado com um clique.
@@ -174,25 +172,25 @@ let addMaterialDp = q('#add-servico-dp').addEventListener('click', ()=>{
             Por esse motivo foi usei o for para criar essa condição.
             */
             rmItemClick[i].addEventListener("click", function(){
-                keyMtRm = this.getAttribute('data-keyMt');
-                let itemOrcMtLen = qA("[data-keyMt]").length;
+                keySvRm = this.getAttribute('data-keySv');
+                let itemOrcSvLen = qA("[data-keySv]").length;
                 i = 0;
-                while(i != itemOrcMtLen){
-                    itemOrcMt = qA("#orcamento-servico [data-keyMt]")[i];
+                while(i != itemOrcSvLen){
+                    itemOrcSv = qA("#orcamento-servico [data-keySv]")[i];
                     try{
-                        if(itemOrcMt.getAttribute('data-keyMt') == keyMtRm){
+                        if(itemOrcSv.getAttribute('data-keySv') == keySvRm){
                             /* 
-                            parentNode para acessar o "pai" de algum elemento. No caso o itemOrcMt.
+                            parentNode para acessar o "pai" de algum elemento. No caso o itemOrcSv.
                             A configuração para remover o item clicado:
                             elementoParaRemover.parentNode.removeChild(elementoParaRemover);
                              */
-                            itemOrcMt.parentNode.removeChild(itemOrcMt);
-                            itemOrcMtLen = qA("[data-keyMt]").length;
+                            itemOrcSv.parentNode.removeChild(itemOrcSv);
+                            itemOrcSvLen = qA("[data-keySv]").length;
                             i = 0;
                         } else{
                             i++;
                         }
-                    } catch(itemOrcMtUndefined){
+                    } catch(itemOrcSvUndefined){
                         break;
                     }
                 }                
@@ -205,7 +203,7 @@ let addMaterialDp = q('#add-servico-dp').addEventListener('click', ()=>{
             );
         }
         //Valor total final
-        somaTotalMt = 0;
+        somaTotalSv = 0;
         for(i = 0; i < qA('#vtotal-servico div').length; i++){
             /* 
             Com o .textContent pegamos aquilo que está no elemento selecionado. No caso o texto.
@@ -215,9 +213,9 @@ let addMaterialDp = q('#add-servico-dp').addEventListener('click', ()=>{
             Ex.: slice(0, 2).
              */
             let valor = parseFloat(qA('#vtotal-servico div')[i].textContent.slice(2))
-            somaTotalMt += valor;
+            somaTotalSv += valor;
         }
-        q('#vfinal-rsl-servico').innerHTML = `R$${somaTotalMt.toFixed(2)}`;
+        q('#vfinal-rsl-servico').innerHTML = `R$${somaTotalSv.toFixed(2)}`;
 
     }else{
         alert("Ainda há campos que devem ser preenchidos!");
@@ -225,23 +223,23 @@ let addMaterialDp = q('#add-servico-dp').addEventListener('click', ()=>{
 });
 
 //Fechar display servico
-let rmMaterial = q('#rm-servico-dp').addEventListener('click', ()=>{
+let rmServico = q('#rm-servico-dp').addEventListener('click', ()=>{
     q('#display-servico').style.display = 'none';
 });
 
-let rmItemMaterialOpen = q('#rm-servico').addEventListener('click', ()=>{
+let rmItemServicoOpen = q('#rm-servico').addEventListener('click', ()=>{
     q('#rm-servico-display').style.display = 'grid';
 });
 
-let rmItemMaterialClose = q('#rm-servico2').addEventListener('click', ()=>{
-    let rmItemMaterial = qA('.item-display-rm .item-display');
+let rmItemServicoClose = q('#rm-servico2').addEventListener('click', ()=>{
+    let rmItemServico = qA('.item-display-rm .item-display');
 
     q('#rm-servico-display').style.display = 'none';
-    divLenMt = qA('#item-servico .item').length+1;
-    nmrMt = String(divLenMt);
-    q('#item-servico-dp div').innerHTML = nmrMt.padStart(3, '0');
+    divLenSv = qA('#item-servico .item').length+1;
+    nmrSv = String(divLenSv);
+    q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
 
-    divLenMtMod = qA('#item-servico .item').length+1;
+    divLenSvMod = qA('#item-servico .item').length+1;
 
     /*
     O código abaixo "ordena" os numeros restantes que está na coluna ITEM.
@@ -251,61 +249,61 @@ let rmItemMaterialClose = q('#rm-servico2').addEventListener('click', ()=>{
     */
 
     try{
-        for(i = 0; i <= divLenMtMod; i++){
-            nmrMtMod = String(i+1);
-            qA('#item-servico .item')[i].innerHTML = nmrMtMod.padStart(3, '0');
-            rmItemMaterial[i].querySelector('.item').innerHTML = nmrMtMod.padStart(3, '0');
+        for(i = 0; i <= divLenSvMod; i++){
+            nmrSvMod = String(i+1);
+            qA('#item-servico .item')[i].innerHTML = nmrSvMod.padStart(3, '0');
+            rmItemServico[i].querySelector('.item').innerHTML = nmrSvMod.padStart(3, '0');
         }
     } catch(Uncaught){
         null;
     }
 
-    keyMt = qA('#item-servico .item').length;
+    keySv = qA('#item-servico .item').length;
     
     /* Aqui ele ordenará os atributos 'data-key' */
 
-    for(i = 0; i < keyMt; i++){
-        qA('#rm-servico-display .item-display')[i].setAttribute('data-keyMt', i+1);
-        qA('#item-servico .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#servico-servico .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#uni-servico .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#qnt-servico .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#vunitario-servico .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#vtotal-servico .item')[i].setAttribute('data-keyMt', i+1);
+    for(i = 0; i < keySv; i++){
+        qA('#rm-servico-display .item-display')[i].setAttribute('data-keySv', i+1);
+        qA('#item-servico .item')[i].setAttribute('data-keySv', i+1);
+        qA('#servico-servico .item')[i].setAttribute('data-keySv', i+1);
+        qA('#uni-servico .item')[i].setAttribute('data-keySv', i+1);
+        qA('#qnt-servico .item')[i].setAttribute('data-keySv', i+1);
+        qA('#vunitario-servico .item')[i].setAttribute('data-keySv', i+1);
+        qA('#vtotal-servico .item')[i].setAttribute('data-keySv', i+1);
     }
 
-    somaTotalMt = 0;
+    somaTotalSv = 0;
     
     //Valor total final
     for(i = 0; i < qA('#vtotal-servico div').length; i++){
         let valor = parseFloat(qA('#vtotal-servico div')[i].textContent.slice(2))
-        somaTotalMt += valor;
+        somaTotalSv += valor;
     }
 
-    q('#vfinal-rsl-servico').innerHTML = `R$${somaTotalMt.toFixed(2)}`;
+    q('#vfinal-rsl-servico').innerHTML = `R$${somaTotalSv.toFixed(2)}`;
 });
 
 //Cálculo valor unitário
 /*
 Foi posto eventos nos inputs para calcular o resultado da miltiplicação do valor e a quantidade de um produto.
 */
-let vunitarioMaterial = q('#vunitarioSv-input').addEventListener('keyup', ()=>{
+let vunitarioServico = q('#vunitarioSv-input').addEventListener('keyup', ()=>{
     setInterval(()=>{
-        vunitarioMaterialValor = q('#vunitarioSv-input').value;
-        if(vunitarioMaterialValor != 0 && qntMaterialValor != 0){
-            vtotalMaterial = vunitarioMaterialValor*qntMaterialValor;
-            vtotalMaterialValor = vtotalMaterial;
-            return q('#vtotal-servico-dp div').innerHTML = vtotalMaterialValor.toFixed(2);
+        vunitarioServicoValor = q('#vunitarioSv-input').value;
+        if(vunitarioServicoValor != 0 && qntServicoValor != 0){
+            vtotalServico = vunitarioServicoValor*qntServicoValor;
+            vtotalServicoValor = vtotalServico;
+            return q('#vtotal-servico-dp div').innerHTML = vtotalServicoValor.toFixed(2);
         }
     }, 200);
 });
-let qntMaterial = q('#qntSv-input').addEventListener('keyup', ()=>{
+let qntServico = q('#qntSv-input').addEventListener('keyup', ()=>{
     setInterval(()=>{
-        qntMaterialValor = q('#qntSv-input').value;
-        if(vunitarioMaterialValor != 0 && qntMaterialValor != 0){
-            vtotalMaterial2 = vunitarioMaterialValor*qntMaterialValor;
-            vtotalMaterialValor = vtotalMaterial2;
-            return q('#vtotal-servico-dp div').innerHTML = vtotalMaterialValor.toFixed(2);
+        qntServicoValor = q('#qntSv-input').value;
+        if(vunitarioServicoValor != 0 && qntServicoValor != 0){
+            vtotalServico2 = vunitarioServicoValor*qntServicoValor;
+            vtotalServicoValor = vtotalServico2;
+            return q('#vtotal-servico-dp div').innerHTML = vtotalServicoValor.toFixed(2);
         }
     }, 200);
 });
