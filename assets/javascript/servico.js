@@ -59,7 +59,7 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
     let ServicoServico = q('#servico-input').value;
     let uniServico = q('#uniSv-input').value;
                                             
-    if(uniServico != 0 && ServicoServico != 0 && vtotalServicoValor != 0){
+    if(uniServico != "" && ServicoServico != "" && vtotalServicoValor != 0){
 
         /*
         Essa parte do código poderia ser feito usando for e algum array. Penso em modificá-lo.
@@ -216,6 +216,8 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
             somaTotalSv += valor;
         }
         q('#vfinal-rsl-servico').innerHTML = `R$${somaTotalSv.toFixed(2)}`;
+
+        return vtotalServicoValor = 0;
 
     }else{
         alert("Ainda há campos que devem ser preenchidos!");
