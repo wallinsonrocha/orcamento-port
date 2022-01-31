@@ -5,34 +5,33 @@ Usando essas constantes definidas podemos criar funções a fim de servir como u
 Utilizando (e) => tendo o "e" como parâmetro, o que for escrito será substituído no
 "querrySelector(e)". Os exemplos serão mostrado logo em seguida, já que foi muito utilizado.
  */
-const q = (e)=> document.querySelector(e);
-const qA = (eA) => document.querySelectorAll(eA);
+const qMt = (e)=> document.querySelector(e);
+const qAMt = (eA) => document.querySelectorAll(eA);
 //Variáveis para cálculo valor unitário
 let vunitarioMaterialValor = 0;
 let qntMaterialValor = 0;
 let vtotalMaterialValor = 0;
 //Variáveis Confirmar display
-let materialMaterial = q('#material-input').value;
-let uniMaterial = q('#uniMt-input').value;
+let materialMaterial = qMt('#material-input').value;
+let uniMaterial = qMt('#uniMt-input').value;
 let keyMt = 0;
 //Numeração Item
-let divLenMt = qA('#item-material .item').length+1;
+let divLenMt = qAMt('#item-material .item').length+1;
 let nmrMt = String(divLenMt);
 /* 
 A linha abaixo serviu para definir o valor do ITEM no display como zero.
 Nos códigos abaixo (em let addMaterialDp) observaremos o desenvolvimento do código
 e o motivo da existência dessa linha.
 */
-q('#item-material-dp div').innerHTML = nmrMt.padStart(3, '0');
+qMt('#item-material-dp div').innerHTML = nmrMt.padStart(3, '0');
 let nmrMtMod;
 let divLenMtMod;
 //Remover item
-let rmItemClick = qA(".item-display-rm [data-keyMt]");
-let itemOrcMt = qA("[data-keyMt]");
+let rmItemClickMt = qAMt(".item-display-rm [data-keyMt]");
+let itemOrcMt = qAMt("[data-keyMt]");
 let keyMtRm = 0;
 //Loops
-let i = 0;
-let j = 0;
+let iMt = 0;
 //Valor total
 let somaTotalMt = 0;
 //Fim variáveis e constantes
@@ -44,24 +43,25 @@ Ao utilizar o "addEventListener" estaremos aplicando um evento no elemento escol
 do document.querrySelector() (nesse caso, o q, apenas).
 Nele, como pode-se observar, há dois parâmetros: 'evento' e a função.
 Neste caso, a função foi adicionada junta, mas poderia ser feita separadamente e colocada:
-Ex.: q(...).addEventListener('click', adicionar());
+Ex.: qMt(...).addEventListener('click', adicionar());
 */
-let addMaterial = q('#add-material').addEventListener('click', ()=>{
+let addMaterial = qMt('#add-material').addEventListener('click', ()=>{
     /*
     Pode-se acessar e modificar o CSS do elemento selecionado atraves do ".style".
     Neste caso eu quis acessar o display para modificá-lo, já que nas condições naturais
     ele está "none";
     */
-    q('#display-material').style.display = 'flex';
+    qMt('#display-material').style.display = 'flex';
 });
 
 //Confirmar display
-let addMaterialDp = q('#add-material-dp').addEventListener('click', ()=>{
+let addMaterialDp = qMt('#add-material-dp').addEventListener('click', ()=>{
     /* Com ".value" pegamos o valor armazenado no input */
-    materialMaterial = q('#material-input').value;
-    uniMaterial = q('#uniMt-input').value;
+    materialMaterial = qMt('#material-input').value;
+    uniMaterial = qMt('#uniMt-input').value;
                                             
-    if(uniMaterial != 0 && materialMaterial != 0 && vtotalMaterialValor != 0){
+    if(uniMaterial != "" && materialMaterial != "" && vtotalMaterialValor != 0){
+        
 
         /*
         Essa parte do código poderia ser feito usando for e algum array. Penso em modificá-lo.
@@ -73,19 +73,19 @@ let addMaterialDp = q('#add-material-dp').addEventListener('click', ()=>{
         Ao selecionar o elemento e adicionar ".cloneNode(true)", é como se tudo que está nesse elemento poderá
         ser copiado (clonado). Sendo assim, abilitei o cloneNode em diversos elementos que serão reutilizados.
 
-        Ao utilizar o qA(...) é observado que eles vem seguidos de "[]". Por que isso?
+        Ao utilizar o qAMt(...) é observado que eles vem seguidos de "[]". Por que isso?
         Resposta: Ao acessar o elemento utilizando document.querrySelectorAll() (nesse caso reduzi para o qA),
         nós teremos acesso a todos os elementos que herdam tal classe. Nesse caso, há 6 tags que utilizam a classe
         ".item". Para acessa-los, o uso do "[]" foi nescessário.
         */
 
-        let areaItemMaterial1 = qA('#modelo-item .item')[0].cloneNode(true);
-        let areaItemMaterial2 = qA('#modelo-item .item')[1].cloneNode(true);
-        let areaItemMaterial3 = qA('#modelo-item .item')[2].cloneNode(true);
-        let areaItemMaterial4 = qA('#modelo-item .item')[3].cloneNode(true);
-        let areaItemMaterial5 = qA('#modelo-item .item')[4].cloneNode(true);
-        let areaItemMaterial6 = qA('#modelo-item .item')[5].cloneNode(true);
-        let rmItemMaterial = q('#modelo-item-rm .item-display').cloneNode(true);
+        let areaItemMaterial1 = qAMt('#modelo-item .item')[0].cloneNode(true);
+        let areaItemMaterial2 = qAMt('#modelo-item .item')[1].cloneNode(true);
+        let areaItemMaterial3 = qAMt('#modelo-item .item')[2].cloneNode(true);
+        let areaItemMaterial4 = qAMt('#modelo-item .item')[3].cloneNode(true);
+        let areaItemMaterial5 = qAMt('#modelo-item .item')[4].cloneNode(true);
+        let areaItemMaterial6 = qAMt('#modelo-item .item')[5].cloneNode(true);
+        let rmItemMaterial = qMt('#modelo-item-rm .item-display').cloneNode(true);
 
         keyMt++;
         /* Com o setAttribute adicionamos um atributo no elemento selecionado seguido do seu valor */
@@ -121,50 +121,50 @@ let addMaterialDp = q('#add-material-dp').addEventListener('click', ()=>{
         //Item
         areaItemMaterial1.innerHTML = nmrMt.padStart(3, '0');
         rmItemMaterial.querySelectorAll('.item')[0].innerHTML = nmrMt.padStart(3, '0');
-        q('#item-material').append(areaItemMaterial1);        
+        qMt('#item-material').append(areaItemMaterial1);        
         //Servico
-        areaItemMaterial2.innerHTML = q('#material-input').value;
-        rmItemMaterial.querySelectorAll('.item')[1].innerHTML = q('#material-input').value;
-        q('#material-material').append(areaItemMaterial2);
+        areaItemMaterial2.innerHTML = qMt('#material-input').value;
+        rmItemMaterial.querySelectorAll('.item')[1].innerHTML = qMt('#material-input').value;
+        qMt('#material-material').append(areaItemMaterial2);
         //Unidade
-        areaItemMaterial3.innerHTML = q('#uniMt-input').value;
-        rmItemMaterial.querySelectorAll('.item')[2].innerHTML = q('#uniMt-input').value;
-        q('#uni-material').append(areaItemMaterial3);
+        areaItemMaterial3.innerHTML = qMt('#uniMt-input').value;
+        rmItemMaterial.querySelectorAll('.item')[2].innerHTML = qMt('#uniMt-input').value;
+        qMt('#uni-material').append(areaItemMaterial3);
         //Quantidade
-        areaItemMaterial4.innerHTML = q('#qntMt-input').value;
-        rmItemMaterial.querySelectorAll('.item')[3].innerHTML = q('#qntMt-input').value;
-        q('#qnt-material').append(areaItemMaterial4);
+        areaItemMaterial4.innerHTML = qMt('#qntMt-input').value;
+        rmItemMaterial.querySelectorAll('.item')[3].innerHTML = qMt('#qntMt-input').value;
+        qMt('#qnt-material').append(areaItemMaterial4);
         //Valor Unitário
-        let vUIn = parseInt(q('#vunitarioMt-input').value);
-        areaItemMaterial5.innerHTML = `R$${(vUIn).toFixed(2)}`;
-        rmItemMaterial.querySelectorAll('.item')[4].innerHTML = `R$${(vUIn).toFixed(2)}`;
-        q('#vunitario-material').append(areaItemMaterial5);
+        let vUInM = parseInt(qMt('#vunitarioMt-input').value);
+        areaItemMaterial5.innerHTML = `R$${(vUInM).toFixed(2)}`;
+        rmItemMaterial.querySelectorAll('.item')[4].innerHTML = `R$${(vUInM).toFixed(2)}`;
+        qMt('#vunitario-material').append(areaItemMaterial5);
         //Valor total
         areaItemMaterial6.innerHTML = `R$${(vtotalMaterialValor).toFixed(2)}`;
         rmItemMaterial.querySelectorAll('.item')[5].innerHTML = `R$${(vtotalMaterialValor).toFixed(2)}`;
-        q('#vtotal-material').append(areaItemMaterial6);
+        qMt('#vtotal-material').append(areaItemMaterial6);
 
         /* 
         Esta linha abaixo serve para atualizar as alterações que foram feitas para o display de remover.
         O append é o final de toda alteração do cloneNode, neste código.
         */
-        q('.item-display-rm').append(rmItemMaterial);
+        qMt('#rm-material-display .item-display-rm').append(rmItemMaterial);
 
-        divLenMt = qA('#item-material .item').length+1;
+        divLenMt = qAMt('#item-material .item').length+1;
         nmrMt = String(divLenMt);
-        q('#item-material-dp div').innerHTML = nmrMt.padStart(3, '0');
+        qMt('#item-material-dp div').innerHTML = nmrMt.padStart(3, '0');
 
         //Display none e zerar valores
-        q('#material-input').value = '';
-        q('#uniMt-input').value = '';
-        q('#qntMt-input').value = '';
-        q('#vunitarioMt-input').value = '';
-        q('#vtotal-material-dp div').innerHTML = 0;    
+        qMt('#material-input').value = '';
+        qMt('#uniMt-input').value = '';
+        qMt('#qntMt-input').value = '';
+        qMt('#vunitarioMt-input').value = '';
+        qMt('#vtotal-material-dp div').innerHTML = 0;    
         
         //Remover Item
-        let rmItemClick = qA(".item-display-rm [data-keyMt]");
-        let itemOrcMt = qA("[data-keyMt]");
-        for (i = 0; i < rmItemClick.length; i++){
+        let rmItemClickMt = qAMt("#rm-material-display [data-keyMt]");
+        let itemOrcMt = qAMt("[data-keyMt]");
+        for (iMt = 0; iMt < rmItemClickMt.length; iMt++){
             /*
             Uma coisa que eu tive dificuldade para fazer foi o ato de deletar o item selecionado com um clique.
             Depois que foi criada a variável, podemos modificar uma por uma sem a nescessidade de criar mais outras (nessa caso por ser
@@ -173,12 +173,12 @@ let addMaterialDp = q('#add-material-dp').addEventListener('click', ()=>{
             ao ser clicado. Por isso foi utilizado o 'this' no código que refere-se ao próprio elemento.
             Por esse motivo foi usei o for para criar essa condição.
             */
-            rmItemClick[i].addEventListener("click", function(){
+            rmItemClickMt[iMt].addEventListener("click", function(){
                 keyMtRm = this.getAttribute('data-keyMt');
-                let itemOrcMtLen = qA("[data-keyMt]").length;
-                i = 0;
-                while(i != itemOrcMtLen){
-                    itemOrcMt = qA("#orcamento-material [data-keyMt]")[i];
+                let itemOrcMtLen = qAMt("[data-keyMt]").length;
+                iMt = 0;
+                while(iMt != itemOrcMtLen){
+                    itemOrcMt = qAMt("#orcamento-material [data-keyMt]")[iMt];
                     try{
                         if(itemOrcMt.getAttribute('data-keyMt') == keyMtRm){
                             /* 
@@ -187,10 +187,10 @@ let addMaterialDp = q('#add-material-dp').addEventListener('click', ()=>{
                             elementoParaRemover.parentNode.removeChild(elementoParaRemover);
                              */
                             itemOrcMt.parentNode.removeChild(itemOrcMt);
-                            itemOrcMtLen = qA("[data-keyMt]").length;
-                            i = 0;
+                            itemOrcMtLen = qAMt("[data-keyMt]").length;
+                            iMt = 0;
                         } else{
-                            i++;
+                            iMt++;
                         }
                     } catch(itemOrcMtUndefined){
                         break;
@@ -206,7 +206,7 @@ let addMaterialDp = q('#add-material-dp').addEventListener('click', ()=>{
         }
         //Valor total final
         somaTotalMt = 0;
-        for(i = 0; i < qA('#vtotal-material div').length; i++){
+        for(iMt = 0; iMt < qAMt('#vtotal-material div').length; iMt++){
             /* 
             Com o .textContent pegamos aquilo que está no elemento selecionado. No caso o texto.
             Após ser pego, transformamos o em float.
@@ -214,34 +214,36 @@ let addMaterialDp = q('#add-material-dp').addEventListener('click', ()=>{
             O slice leva, no mínimo, um parâmetro (inicio) e no máximo 2 (o inicio e o final).
             Ex.: slice(0, 2).
              */
-            let valor = parseFloat(qA('#vtotal-material div')[i].textContent.slice(2))
-            somaTotalMt += valor;
+            let valorMt = parseFloat(qAMt('#vtotal-material div')[iMt].textContent.slice(2))
+            somaTotalMt += valorMt;
         }
-        q('#vfinal-rsl-material').innerHTML = `R$${somaTotalMt.toFixed(2)}`;
+        qMt('#vfinal-rsl-material').innerHTML = `R$${somaTotalMt.toFixed(2)}`;
+
+        return vtotalMaterialValor = 0;
 
     }else{
-        alert("Ainda há campos que devem ser preenchidos!");
+        return alert("Ainda há campos que devem ser preenchidos!");
     }
 });
 
 //Fechar display servico
-let rmMaterial = q('#rm-material-dp').addEventListener('click', ()=>{
-    q('#display-material').style.display = 'none';
+let rmMaterial = qMt('#rm-material-dp').addEventListener('click', ()=>{
+    qMt('#display-material').style.display = 'none';
 });
 
-let rmItemMaterialOpen = q('#rm-material').addEventListener('click', ()=>{
-    q('#rm-material-display').style.display = 'grid';
+let rmItemMaterialOpen = qMt('#rm-material').addEventListener('click', ()=>{
+    qMt('#rm-material-display').style.display = 'grid';
 });
 
-let rmItemMaterialClose = q('#rm-material2').addEventListener('click', ()=>{
-    let rmItemMaterial = qA('.item-display-rm .item-display');
+let rmItemMaterialClose = qMt('#rm-material2').addEventListener('click', ()=>{
+    let rmItemMaterial = qAMt('.rm-material-display .item-display');
 
-    q('#rm-material-display').style.display = 'none';
-    divLenMt = qA('#item-material .item').length+1;
+    qMt('#rm-material-display').style.display = 'none';
+    divLenMt = qAMt('#item-material .item').length+1;
     nmrMt = String(divLenMt);
-    q('#item-material-dp div').innerHTML = nmrMt.padStart(3, '0');
+    qMt('#item-material-dp div').innerHTML = nmrMt.padStart(3, '0');
 
-    divLenMtMod = qA('#item-material .item').length+1;
+    divLenMtMod = qAMt('#item-material .item').length+1;
 
     /*
     O código abaixo "ordena" os numeros restantes que está na coluna ITEM.
@@ -251,61 +253,61 @@ let rmItemMaterialClose = q('#rm-material2').addEventListener('click', ()=>{
     */
 
     try{
-        for(i = 0; i <= divLenMtMod; i++){
-            nmrMtMod = String(i+1);
-            qA('#item-material .item')[i].innerHTML = nmrMtMod.padStart(3, '0');
-            rmItemMaterial[i].querySelector('.item').innerHTML = nmrMtMod.padStart(3, '0');
+        for(iMt = 0; iMt <= divLenMtMod; iMt++){
+            nmrMtMod = String(iMt+1);
+            qAMt('#item-material .item')[iMt].innerHTML = nmrMtMod.padStart(3, '0');
+            rmItemMaterial[iMt].querySelector('.item').innerHTML = nmrMtMod.padStart(3, '0');
         }
     } catch(Uncaught){
         null;
     }
 
-    keyMt = qA('#item-material .item').length;
+    keyMt = qAMt('#item-material .item').length;
     
     /* Aqui ele ordenará os atributos 'data-key' */
 
-    for(i = 0; i < keyMt; i++){
-        qA('#rm-material-display .item-display')[i].setAttribute('data-keyMt', i+1);
-        qA('#item-material .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#material-material .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#uni-material .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#qnt-material .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#vunitario-material .item')[i].setAttribute('data-keyMt', i+1);
-        qA('#vtotal-material .item')[i].setAttribute('data-keyMt', i+1);
+    for(iMt = 0; iMt < keyMt; iMt++){
+        qAMt('#rm-material-display .item-display')[iMt].setAttribute('data-keyMt', iMt+1);
+        qAMt('#item-material .item')[iMt].setAttribute('data-keyMt', iMt+1);
+        qAMt('#material-material .item')[iMt].setAttribute('data-keyMt', iMt+1);
+        qAMt('#uni-material .item')[iMt].setAttribute('data-keyMt', iMt+1);
+        qAMt('#qnt-material .item')[iMt].setAttribute('data-keyMt', iMt+1);
+        qAMt('#vunitario-material .item')[iMt].setAttribute('data-keyMt', iMt+1);
+        qAMt('#vtotal-material .item')[iMt].setAttribute('data-keyMt', iMt+1);
     }
 
     somaTotalMt = 0;
     
     //Valor total final
-    for(i = 0; i < qA('#vtotal-material div').length; i++){
-        let valor = parseFloat(qA('#vtotal-material div')[i].textContent.slice(2))
-        somaTotalMt += valor;
+    for(iMt= 0; iMt< qAMt('#vtotal-material div').length; iMt++){
+        let valorMt = parseFloat(qAMt('#vtotal-material div')[iMt].textContent.slice(2))
+        somaTotalMt += valorMt;
     }
 
-    q('#vfinal-rsl-material').innerHTML = `R$${somaTotalMt.toFixed(2)}`;
+    qMt('#vfinal-rsl-material').innerHTML = `R$${somaTotalMt.toFixed(2)}`;
 });
 
 //Cálculo valor unitário
 /*
 Foi posto eventos nos inputs para calcular o resultado da miltiplicação do valor e a quantidade de um produto.
 */
-let vunitarioMaterial = q('#vunitarioMt-input').addEventListener('keyup', ()=>{
+let vunitarioMaterial = qMt('#vunitarioMt-input').addEventListener('keyup', ()=>{
     setInterval(()=>{
-        vunitarioMaterialValor = q('#vunitarioMt-input').value;
+        vunitarioMaterialValor = qMt('#vunitarioMt-input').value;
         if(vunitarioMaterialValor != 0 && qntMaterialValor != 0){
             vtotalMaterial = vunitarioMaterialValor*qntMaterialValor;
             vtotalMaterialValor = vtotalMaterial;
-            return q('#vtotal-material-dp div').innerHTML = vtotalMaterialValor.toFixed(2);
+            return qMt('#vtotal-material-dp div').innerHTML = vtotalMaterialValor.toFixed(2);
         }
     }, 200);
 });
-let qntMaterial = q('#qntMt-input').addEventListener('keyup', ()=>{
+let qntMaterial = qMt('#qntMt-input').addEventListener('keyup', ()=>{
     setInterval(()=>{
-        qntMaterialValor = q('#qntMt-input').value;
+        qntMaterialValor = qMt('#qntMt-input').value;
         if(vunitarioMaterialValor != 0 && qntMaterialValor != 0){
             vtotalMaterial2 = vunitarioMaterialValor*qntMaterialValor;
             vtotalMaterialValor = vtotalMaterial2;
-            return q('#vtotal-material-dp div').innerHTML = vtotalMaterialValor.toFixed(2);
+            return qMt('#vtotal-material-dp div').innerHTML = vtotalMaterialValor.toFixed(2);
         }
     }, 200);
 });

@@ -5,8 +5,8 @@ Usando essas constantes definidas podemos criar funções a fim de servir como u
 Utilizando (e) => tendo o "e" como parâmetro, o que for escrito será substituído no
 "querrySelector(e)". Os exemplos serão mostrado logo em seguida, já que foi muito utilizado.
  */
-const q = (e)=> document.querySelector(e);
-const qA = (eA) => document.querySelectorAll(eA);
+const qSv = (e)=> document.querySelector(e);
+const qASv = (eA) => document.querySelectorAll(eA);
 //Variáveis para cálculo valor unitário
 let vunitarioServicoValor = 0;
 let qntServicoValor = 0;
@@ -14,23 +14,22 @@ let vtotalServicoValor = 0;
 //Variáveis Confirmar display
 let keySv = 0;
 //Numeração Item
-let divLenSv = qA('#item-servico .item').length+1;
+let divLenSv = qASv('#item-servico .item').length+1;
 let nmrSv = String(divLenSv);
 /* 
 A linha abaixo serviu para definir o valor do ITEM no display como zero.
 Nos códigos abaixo (em let addServicoDp) observaremos o desenvolvimento do código
 e o motivo da existência dessa linha.
 */
-q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
+qSv('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
 let nmrSvMod;
 let divLenSvMod;
 //Remover item
-let rmItemClick = qA(".item-display-rm [data-keySv]");
-let itemOrcSv = qA("[data-keySv]");
+let rmItemClickSv = qASv(".item-display-rm [data-keySv]");
+let itemOrcSv = qASv("[data-keySv]");
 let keySvRm = 0;
 //Loops
-let i = 0;
-let j = 0;
+let iSv= 0;
 //Valor total
 let somaTotalSv = 0;
 //Fim variáveis e constantes
@@ -42,22 +41,22 @@ Ao utilizar o "addEventListener" estaremos aplicando um evento no elemento escol
 do document.querrySelector() (nesse caso, o q, apenas).
 Nele, como pode-se observar, há dois parâmetros: 'evento' e a função.
 Neste caso, a função foi adicionada junta, mas poderia ser feita separadamente e colocada:
-Ex.: q(...).addEventListener('click', adicionar());
+Ex.: qSv(...).addEventListener('click', adicionar());
 */
-let addServico = q('#add-servico').addEventListener('click', ()=>{
+let addServico = qSv('#add-servico').addEventListener('click', ()=>{
     /*
     Pode-se acessar e modificar o CSS do elemento selecionado atraves do ".style".
     Neste caso eu quis acessar o display para modificá-lo, já que nas condições naturais
     ele está "none";
     */
-    q('#display-servico').style.display = 'flex';
+    qSv('#display-servico').style.display = 'flex';
 });
 
 //Confirmar display
-let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
+let addServicoDp = qSv('#add-servico-dp').addEventListener('click', ()=>{
     /* Com ".value" pegamos o valor armazenado no input */
-    let ServicoServico = q('#servico-input').value;
-    let uniServico = q('#uniSv-input').value;
+    let ServicoServico = qSv('#servico-input').value;
+    let uniServico = qSv('#uniSv-input').value;
                                             
     if(uniServico != "" && ServicoServico != "" && vtotalServicoValor != 0){
 
@@ -71,19 +70,19 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
         Ao selecionar o elemento e adicionar ".cloneNode(true)", é como se tudo que está nesse elemento poderá
         ser copiado (clonado). Sendo assim, abilitei o cloneNode em diversos elementos que serão reutilizados.
 
-        Ao utilizar o qA(...) é observado que eles vem seguidos de "[]". Por que isso?
+        Ao utilizar o qASv(...) é observado que eles vem seguidos de "[]". Por que isso?
         Resposta: Ao acessar o elemento utilizando document.querrySelectorAll() (nesse caso reduzi para o qA),
         nós teremos acesso a todos os elementos que herdam tal classe. Nesse caso, há 6 tags que utilizam a classe
         ".item". Para acessa-los, o uso do "[]" foi nescessário.
         */
 
-        let areaItemServico1 = qA('#modelo-item .item')[0].cloneNode(true);
-        let areaItemServico2 = qA('#modelo-item .item')[1].cloneNode(true);
-        let areaItemServico3 = qA('#modelo-item .item')[2].cloneNode(true);
-        let areaItemServico4 = qA('#modelo-item .item')[3].cloneNode(true);
-        let areaItemServico5 = qA('#modelo-item .item')[4].cloneNode(true);
-        let areaItemServico6 = qA('#modelo-item .item')[5].cloneNode(true);
-        let rmItemServico = q('#modelo-item-rm .item-display').cloneNode(true);
+        let areaItemServico1 = qASv('#modelo-item .item')[0].cloneNode(true);
+        let areaItemServico2 = qASv('#modelo-item .item')[1].cloneNode(true);
+        let areaItemServico3 = qASv('#modelo-item .item')[2].cloneNode(true);
+        let areaItemServico4 = qASv('#modelo-item .item')[3].cloneNode(true);
+        let areaItemServico5 = qASv('#modelo-item .item')[4].cloneNode(true);
+        let areaItemServico6 = qASv('#modelo-item .item')[5].cloneNode(true);
+        let rmItemServico = qSv('#modelo-item-rm .item-display').cloneNode(true);
 
         keySv++;
         /* Com o setAttribute adicionamos um atributo no elemento selecionado seguido do seu valor */
@@ -119,50 +118,50 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
         //Item
         areaItemServico1.innerHTML = nmrSv.padStart(3, '0');
         rmItemServico.querySelectorAll('.item')[0].innerHTML = nmrSv.padStart(3, '0');
-        q('#item-servico').append(areaItemServico1);        
+        qSv('#item-servico').append(areaItemServico1);        
         //Servico
-        areaItemServico2.innerHTML = q('#servico-input').value;
-        rmItemServico.querySelectorAll('.item')[1].innerHTML = q('#servico-input').value;
-        q('#servico-servico').append(areaItemServico2);
+        areaItemServico2.innerHTML = qSv('#servico-input').value;
+        rmItemServico.querySelectorAll('.item')[1].innerHTML = qSv('#servico-input').value;
+        qSv('#servico-servico').append(areaItemServico2);
         //Unidade
-        areaItemServico3.innerHTML = q('#uniSv-input').value;
-        rmItemServico.querySelectorAll('.item')[2].innerHTML = q('#uniSv-input').value;
-        q('#uni-servico').append(areaItemServico3);
+        areaItemServico3.innerHTML = qSv('#uniSv-input').value;
+        rmItemServico.querySelectorAll('.item')[2].innerHTML = qSv('#uniSv-input').value;
+        qSv('#uni-servico').append(areaItemServico3);
         //Quantidade
-        areaItemServico4.innerHTML = q('#qntSv-input').value;
-        rmItemServico.querySelectorAll('.item')[3].innerHTML = q('#qntSv-input').value;
-        q('#qnt-servico').append(areaItemServico4);
+        areaItemServico4.innerHTML = qSv('#qntSv-input').value;
+        rmItemServico.querySelectorAll('.item')[3].innerHTML = qSv('#qntSv-input').value;
+        qSv('#qnt-servico').append(areaItemServico4);
         //Valor Unitário
-        let vUIn = parseInt(q('#vunitarioSv-input').value);
-        areaItemServico5.innerHTML = `R$${(vUIn).toFixed(2)}`;
-        rmItemServico.querySelectorAll('.item')[4].innerHTML = `R$${(vUIn).toFixed(2)}`;
-        q('#vunitario-servico').append(areaItemServico5);
+        let vUInS = parseInt(qSv('#vunitarioSv-input').value);
+        areaItemServico5.innerHTML = `R$${(vUInS).toFixed(2)}`;
+        rmItemServico.querySelectorAll('.item')[4].innerHTML = `R$${(vUInS).toFixed(2)}`;
+        qSv('#vunitario-servico').append(areaItemServico5);
         //Valor total
         areaItemServico6.innerHTML = `R$${(vtotalServicoValor).toFixed(2)}`;
         rmItemServico.querySelectorAll('.item')[5].innerHTML = `R$${(vtotalServicoValor).toFixed(2)}`;
-        q('#vtotal-servico').append(areaItemServico6);
+        qSv('#vtotal-servico').append(areaItemServico6);
 
         /* 
         Esta linha abaixo serve para atualizar as alterações que foram feitas para o display de remover.
         O append é o final de toda alteração do cloneNode, neste código.
         */
-        q('.item-display-rm').append(rmItemServico);
+        qSv('#rm-servico-display .item-display-rm').append(rmItemServico);
 
-        divLenSv = qA('#item-servico .item').length+1;
+        divLenSv = qASv('#item-servico .item').length+1;
         nmrSv = String(divLenSv);
-        q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
+        qSv('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
 
         //Display none e zerar valores
-        q('#servico-input').value = '';
-        q('#uniSv-input').value = '';
-        q('#qntSv-input').value = '';
-        q('#vunitarioSv-input').value = '';
-        q('#vtotal-servico-dp div').innerHTML = 0;    
+        qSv('#servico-input').value = '';
+        qSv('#uniSv-input').value = '';
+        qSv('#qntSv-input').value = '';
+        qSv('#vunitarioSv-input').value = '';
+        qSv('#vtotal-servico-dp div').innerHTML = 0;    
         
         //Remover Item
-        let rmItemClick = qA(".item-display-rm [data-keySv]");
-        let itemOrcSv = qA("[data-keySv]");
-        for (i = 0; i < rmItemClick.length; i++){
+        let rmItemClickSv = qASv("#rm-servico-display [data-keySv]");
+        let itemOrcSv = qASv("[data-keySv]");
+        for (iSv= 0; iSv< rmItemClickSv.length; iSv++){
             /*
             Uma coisa que eu tive dificuldade para fazer foi o ato de deletar o item selecionado com um clique.
             Depois que foi criada a variável, podemos modificar uma por uma sem a nescessidade de criar mais outras (nessa caso por ser
@@ -171,12 +170,12 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
             ao ser clicado. Por isso foi utilizado o 'this' no código que refere-se ao próprio elemento.
             Por esse motivo foi usei o for para criar essa condição.
             */
-            rmItemClick[i].addEventListener("click", function(){
+            rmItemClickSv[iSv].addEventListener("click", function(){
                 keySvRm = this.getAttribute('data-keySv');
-                let itemOrcSvLen = qA("[data-keySv]").length;
-                i = 0;
-                while(i != itemOrcSvLen){
-                    itemOrcSv = qA("#orcamento-servico [data-keySv]")[i];
+                let itemOrcSvLen = qASv("[data-keySv]").length;
+                iSv= 0;
+                while(iSv!= itemOrcSvLen){
+                    itemOrcSv = qASv("#orcamento-servico [data-keySv]")[iSv];
                     try{
                         if(itemOrcSv.getAttribute('data-keySv') == keySvRm){
                             /* 
@@ -185,10 +184,10 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
                             elementoParaRemover.parentNode.removeChild(elementoParaRemover);
                              */
                             itemOrcSv.parentNode.removeChild(itemOrcSv);
-                            itemOrcSvLen = qA("[data-keySv]").length;
-                            i = 0;
+                            itemOrcSvLen = qASv("[data-keySv]").length;
+                            iSv= 0;
                         } else{
-                            i++;
+                            iSv++;
                         }
                     } catch(itemOrcSvUndefined){
                         break;
@@ -204,7 +203,7 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
         }
         //Valor total final
         somaTotalSv = 0;
-        for(i = 0; i < qA('#vtotal-servico div').length; i++){
+        for(iSv= 0; iSv< qASv('#vtotal-servico div').length; iSv++){
             /* 
             Com o .textContent pegamos aquilo que está no elemento selecionado. No caso o texto.
             Após ser pego, transformamos o em float.
@@ -212,36 +211,36 @@ let addServicoDp = q('#add-servico-dp').addEventListener('click', ()=>{
             O slice leva, no mínimo, um parâmetro (inicio) e no máximo 2 (o inicio e o final).
             Ex.: slice(0, 2).
              */
-            let valor = parseFloat(qA('#vtotal-servico div')[i].textContent.slice(2))
-            somaTotalSv += valor;
+            let valorSv = parseFloat(qASv('#vtotal-servico div')[iSv].textContent.slice(2))
+            somaTotalSv += valorSv;
         }
-        q('#vfinal-rsl-servico').innerHTML = `R$${somaTotalSv.toFixed(2)}`;
+        qSv('#vfinal-rsl-servico').innerHTML = `R$${somaTotalSv.toFixed(2)}`;
 
         return vtotalServicoValor = 0;
 
     }else{
-        alert("Ainda há campos que devem ser preenchidos!");
+        return alert("Ainda há campos que devem ser preenchidos!");
     }
 });
 
 //Fechar display servico
-let rmServico = q('#rm-servico-dp').addEventListener('click', ()=>{
-    q('#display-servico').style.display = 'none';
+let rmServico = qSv('#rm-servico-dp').addEventListener('click', ()=>{
+    qSv('#display-servico').style.display = 'none';
 });
 
-let rmItemServicoOpen = q('#rm-servico').addEventListener('click', ()=>{
-    q('#rm-servico-display').style.display = 'grid';
+let rmItemServicoOpen = qSv('#rm-servico').addEventListener('click', ()=>{
+    qSv('#rm-servico-display').style.display = 'grid';
 });
 
-let rmItemServicoClose = q('#rm-servico2').addEventListener('click', ()=>{
-    let rmItemServico = qA('.item-display-rm .item-display');
+let rmItemServicoClose = qSv('#rm-servico2').addEventListener('click', ()=>{
+    let rmItemServico = qASv('.rm-servico-display .item-display');
 
-    q('#rm-servico-display').style.display = 'none';
-    divLenSv = qA('#item-servico .item').length+1;
+    qSv('#rm-servico-display').style.display = 'none';
+    divLenSv = qASv('#item-servico .item').length+1;
     nmrSv = String(divLenSv);
-    q('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
+    qSv('#item-servico-dp div').innerHTML = nmrSv.padStart(3, '0');
 
-    divLenSvMod = qA('#item-servico .item').length+1;
+    divLenSvMod = qASv('#item-servico .item').length+1;
 
     /*
     O código abaixo "ordena" os numeros restantes que está na coluna ITEM.
@@ -251,61 +250,61 @@ let rmItemServicoClose = q('#rm-servico2').addEventListener('click', ()=>{
     */
 
     try{
-        for(i = 0; i <= divLenSvMod; i++){
-            nmrSvMod = String(i+1);
-            qA('#item-servico .item')[i].innerHTML = nmrSvMod.padStart(3, '0');
-            rmItemServico[i].querySelector('.item').innerHTML = nmrSvMod.padStart(3, '0');
+        for(iSv= 0; iSv<= divLenSvMod; iSv++){
+            nmrSvMod = String(iSv+1);
+            qASv('#item-servico .item')[iSv].innerHTML = nmrSvMod.padStart(3, '0');
+            rmItemServicoiSv.querySelector('.item').innerHTML = nmrSvMod.padStart(3, '0');
         }
     } catch(Uncaught){
         null;
     }
 
-    keySv = qA('#item-servico .item').length;
+    keySv = qASv('#item-servico .item').length;
     
     /* Aqui ele ordenará os atributos 'data-key' */
 
-    for(i = 0; i < keySv; i++){
-        qA('#rm-servico-display .item-display')[i].setAttribute('data-keySv', i+1);
-        qA('#item-servico .item')[i].setAttribute('data-keySv', i+1);
-        qA('#servico-servico .item')[i].setAttribute('data-keySv', i+1);
-        qA('#uni-servico .item')[i].setAttribute('data-keySv', i+1);
-        qA('#qnt-servico .item')[i].setAttribute('data-keySv', i+1);
-        qA('#vunitario-servico .item')[i].setAttribute('data-keySv', i+1);
-        qA('#vtotal-servico .item')[i].setAttribute('data-keySv', i+1);
+    for(iSv= 0; iSv< keySv; iSv++){
+        qASv('#rm-servico-display .item-display')[iSv].setAttribute('data-keySv', iSv+1);
+        qASv('#item-servico .item')[iSv].setAttribute('data-keySv', iSv+1);
+        qASv('#servico-servico .item')[iSv].setAttribute('data-keySv', iSv+1);
+        qASv('#uni-servico .item')[iSv].setAttribute('data-keySv', iSv+1);
+        qASv('#qnt-servico .item')[iSv].setAttribute('data-keySv', iSv+1);
+        qASv('#vunitario-servico .item')[iSv].setAttribute('data-keySv', iSv+1);
+        qASv('#vtotal-servico .item')[iSv].setAttribute('data-keySv', iSv+1);
     }
 
     somaTotalSv = 0;
     
     //Valor total final
-    for(i = 0; i < qA('#vtotal-servico div').length; i++){
-        let valor = parseFloat(qA('#vtotal-servico div')[i].textContent.slice(2))
-        somaTotalSv += valor;
+    for(iSv= 0; iSv< qASv('#vtotal-servico div').length; iSv++){
+        let valorSv = parseFloat(qASv('#vtotal-servico div')[iSv].textContent.slice(2))
+        somaTotalSv += valorSv;
     }
 
-    q('#vfinal-rsl-servico').innerHTML = `R$${somaTotalSv.toFixed(2)}`;
+    qSv('#vfinal-rsl-servico').innerHTML = `R$${somaTotalSv.toFixed(2)}`;
 });
 
 //Cálculo valor unitário
 /*
 Foi posto eventos nos inputs para calcular o resultado da miltiplicação do valor e a quantidade de um produto.
 */
-let vunitarioServico = q('#vunitarioSv-input').addEventListener('keyup', ()=>{
+let vunitarioServico = qSv('#vunitarioSv-input').addEventListener('keyup', ()=>{
     setInterval(()=>{
-        vunitarioServicoValor = q('#vunitarioSv-input').value;
+        vunitarioServicoValor = qSv('#vunitarioSv-input').value;
         if(vunitarioServicoValor != 0 && qntServicoValor != 0){
             vtotalServico = vunitarioServicoValor*qntServicoValor;
             vtotalServicoValor = vtotalServico;
-            return q('#vtotal-servico-dp div').innerHTML = vtotalServicoValor.toFixed(2);
+            return qSv('#vtotal-servico-dp div').innerHTML = vtotalServicoValor.toFixed(2);
         }
     }, 200);
 });
-let qntServico = q('#qntSv-input').addEventListener('keyup', ()=>{
+let qntServico = qSv('#qntSv-input').addEventListener('keyup', ()=>{
     setInterval(()=>{
-        qntServicoValor = q('#qntSv-input').value;
+        qntServicoValor = qSv('#qntSv-input').value;
         if(vunitarioServicoValor != 0 && qntServicoValor != 0){
             vtotalServico2 = vunitarioServicoValor*qntServicoValor;
             vtotalServicoValor = vtotalServico2;
-            return q('#vtotal-servico-dp div').innerHTML = vtotalServicoValor.toFixed(2);
+            return qSv('#vtotal-servico-dp div').innerHTML = vtotalServicoValor.toFixed(2);
         }
     }, 200);
 });

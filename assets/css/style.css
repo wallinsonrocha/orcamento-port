@@ -40,7 +40,7 @@ button:hover{
     background-image: linear-gradient(to bottom, rgb(236, 52, 52), rgb(250, 0, 0));
 }
 
-#rm-material:hover, .rm-servico:hover, #rm-servico-dp:hover, #rm-material-dp{
+#rm-material:hover, .rm-servico:hover, #rm-servico-dp:hover, #rm-material-dp:hover{
     background-image: linear-gradient(to bottom, rgb(221, 11, 11), rgb(94, 6, 6));
 }
 
