@@ -4,221 +4,39 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/scss/style.css">
+        <script src="https://kit.fontawesome.com/1b6b70721a.js" crossorigin="anonymous"></script>
 
         <title>Orçamento</title>
     </head>
     <body>
-        
-        <!-- Modelo oculto -->
+          <header>
+            <ul id="logo" class="elem-header">
+                <li><a href="">Sobre mim</a></li>
+                <li><a href="">LinkedIn</a></li>
+                <li><a href="">Instagram</a></li>
+                <li><a href="">Github</a></li>
+            </ul>
+            <div id="user" class="elem-header">
+                <i class="fa-solid fa-circle-user fa-2x"></i>
+                <p id="user-name"></p>
+                <div id="menu-area">
+                    <label for="menu">
+                        <i class="fa-solid fa-caret-down" for="menu"></i>
+                    </label>
+                    <input type="checkbox" id="menu">
+                    <ul id="menu-options">
+                        <li><a href="">Perfil</a></li>
+                        <li><a href="">Orçamentos</a></li>
+                        <li><a href="">Sair</a></li>
+                    </ul>
+                </div>
+            </div> 
+          </header>
 
-        <div id="modelo-item">
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-        </div>
-
-        <div id="modelo-item-rm">
-            <div class="item-display">
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-            </div>
-        </div>
-        
-        <!-- Displayers -->
-
-        <div id="display-info">
-            <div class="info">
-                <div>
-                    <div>AO CLIENTE: </div>
-                    <div><input type="text" id="cliente-value"></div>
-                </div>
-                <br>
-                <div>
-                    <div>Att.: </div> 
-                    <div><input type="text" id="att-value"></div>
-                </div>
-                <br><br><br>
-                SEGUE NOSSA MELHOR PROPOSTA
-                <br><br>
-                <div>
-                    <div>OBJETIVO: </div>
-                    <div><input type="text" id="objetivo-value"></div>
-                </div>
-                <br>
-                <button id="btn-confirmar-display">Confirmar</button>  
-                <button id="btn-cancelar-display">Cancelar</button>
-                <button id="btn-limpar-display">Limpar</button>
-            </div>
-        </div>
-
-        <div id="display-servico">
-            <div class="item-display">
-                <div id="item-servico-dp" class="item bn">
-                    <header>Item</header>                        
-                    <div></div>
-                </div>
-                <div id="servico-servico-dp" class="item bn">
-                    <header>Serviços</header>
-                    <div><input id="servico-input" type="text"></div>
-                </div>
-                <div id="uni-servico-dp" class="item bn">
-                    <header>Uni.</header>
-                    <div><input id="uniSv-input" type="text"></div>
-                </div>
-                <div id="qnt-servico-dp" class="item bn">
-                    <header>Qnt.</header>
-                    <div><input id="qntSv-input" type="number"></div>
-                </div>
-                <div id="vunitario-servico-dp" class="item bn">
-                    <header>V. Unitário</header>
-                    <div><input id="vunitarioSv-input" type="number"></div>
-                </div>
-                <div id="vtotal-servico-dp" class="item bn">
-                    <header>V. Total</header>
-                    <div>0</div>
-                </div>    
-                <div id="btn-servico-dp">
-                    <button id="add-servico-dp">Confirmar</button>
-                    <button id="rm-servico-dp">Fechar</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="display-material">
-            <div class="item-display">
-                <div id="item-material-dp" class="item bn">
-                    <header>Item</header>                        
-                    <div></div>
-                </div>
-                <div id="material-material-dp" class="item bn">
-                    <header>Materiais</header>
-                    <div><input id="material-input" type="text"></div>
-                </div>
-                <div id="uni-material-dp" class="item bn">
-                    <header>Uni.</header>
-                    <div><input id="uniMt-input" type="text"></div>
-                </div>
-                <div id="qnt-material-dp" class="item bn">
-                    <header>Qnt.</header>
-                    <div><input id="qntMt-input" type="number"></div>
-                </div>
-                <div id="vunitario-material-dp" class="item bn">
-                    <header>V. Unitário</header>
-                    <div><input id="vunitarioMt-input" type="number"></div>
-                </div>
-                <div id="vtotal-material-dp" class="item bn">
-                    <header>V. Total</header>
-                    <div>0</div>
-                </div>    
-                <div id="btn-material-dp">
-                    <button id="add-material-dp">Confirmar</button>
-                    <button id="rm-material-dp">Fechar</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="rm-servico-display">
-            <div class="item-display-box">
-                <div class="item-display-rm"></div>
-                <button id="rm-servico2">Voltar</button>
-            </div>
-        </div>
-
-        <div id="rm-material-display">
-            <div class="item-display-box">
-                <div class="item-display-rm"></div>
-                <button id="rm-material2">Voltar</button>
-            </div>
-        </div>
-
-        <!-- Fim displayers -->
-
-        <main>
-            <div class="info">
-                <div class="cliente">
-                    <div>AO CLIENTE: </div>
-                    <div id="cliente-nome"></div>
-                </div>
-                <br>
-                <div class="att">
-                    <div>Att.: </div> 
-                    <div id="att-nome"></div>
-                </div>
-                <br><br><br>
-                SEGUE NOSSA MELHOR PROPOSTA
-                <br><br>
-                <div class="objetivo">
-                    <div>OBJETIVO: </div>
-                    <div id="objetivo-nome"></div>
-                </div>  
-            </div>
-
-            <!-- Orcamentos -->
-
-            <div id="orcamento-servico">
-                <div class="modelo">
-                    <div id="item-servico" class="item">
-                        <header>Item</header>
-                    </div>
-                    <div id="servico-servico" class="item">
-                        <header>Serviços</header>
-                    </div>
-                    <div id="uni-servico" class="item">
-                        <header>Uni.</header>
-                    </div>
-                    <div id="qnt-servico" class="item">
-                        <header>Qnt.</header>
-                    </div>
-                    <div id="vunitario-servico" class="item">
-                        <header>V. Unitário</header>
-                    </div>
-                    <div id="vtotal-servico" class="item">
-                        <header>V. Total</header>
-                    </div>
-                    <div id="vfinal-servico">VALOR TOTAL </div>
-                    <div id="vfinal-rsl-servico"></div>
-                </div>
-            </div>     
-            <button id="add-servico">Adicionar</button>
-            <button id="rm-servico">Remover</button>
-
-
-            <div id="orcamento-material">
-                <div class="modelo">
-                    <div id="item-material"class="item">
-                        <header>Item</header>
-                    </div>
-                    <div id="material-material" class="item">
-                        <header>Materiais</header>
-                    </div>
-                    <div id="uni-material" class="item">
-                        <header>Uni.</header>
-                    </div>
-                    <div id="qnt-material" class="item">
-                        <header>Qnt.</header>
-                    </div>
-                    <div id="vunitario-material" class="item">
-                        <header>V. Unitário</header>
-                    </div>
-                    <div id="vtotal-material" class="item">
-                        <header>V. Total</header>
-                    </div>
-                    <div id="vfinal-material">VALOR TOTAL </div>
-                    <div id="vfinal-rsl-material"></div>
-                </div>
-            </div>
-            <button id="add-material">Adicionar</button>
-            <button id="rm-material">Remover</button>
-            <div id="area-material"></div>
-        </main>
+          <main>
+            tabelas
+          </main>
 
         <script src="assets/javascript/displayInfo.js"></script>
         <script src="assets/javascript/servico.js"></script>
